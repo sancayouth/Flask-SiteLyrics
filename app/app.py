@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template
-from .extensions import login_manager
+from .extensions import login_manager, bootstrap, bcrypt, db
 from config import DevelopmentConfig
 
 def create_app():
@@ -18,6 +18,12 @@ def configure_app(app,config=None):
 
 
 def configure_extensions(app):
+    # Flask-SqlAlchemy
+    db.init_app(app)
+    # Flask-Bcrypt
+    bcrypt.init_app(app)
+    # flask-bootsrap
+    bootstrap.init_app(app)
     # flask-login
     login_manager.login_view = 'auth.login'
     login_manager.refresh_view = 'auth.reauth'
@@ -29,8 +35,7 @@ def configure_extensions(app):
 
     @login_manager.unauthorized_handler
     def unauthorized():
-        pass
-        # return redirect('/login')
+        return redirect('/login')
     login_manager.setup_app(app)
 
 
@@ -39,6 +44,8 @@ def configure_blueprints(app):
     # register our blueprints
     from home.views import home as home_blueprint
     app.register_blueprint(home_blueprint)
+    from auth.views import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
 
 def configure_error_handlers(app):

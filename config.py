@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class BaseConfig(object):
     DEBUG = False
     TESTING = False
     SECRET_KEY = 'secret key'
+    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir,
+                                                              'lyrics.sqlite')
 
 
 class ProductionConfig(BaseConfig):
