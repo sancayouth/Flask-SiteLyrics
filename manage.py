@@ -1,10 +1,11 @@
 from flask.ext.script import Manager
 from app import create_app
 from app.extensions import db
+from config import DevelopmentConfig
 from app.models import User
 
 
-app = create_app()
+app = create_app(DevelopmentConfig)
 manager = Manager(app)
 
 @manager.command

@@ -3,16 +3,16 @@ from flask import Flask, render_template
 from .extensions import login_manager, bootstrap, bcrypt, db
 from config import DevelopmentConfig
 
-def create_app():
+def create_app(config=None):
     app = Flask(__name__)
-    configure_app(app, DevelopmentConfig)
+    configure_app(app, config)
     configure_extensions(app)
     configure_error_handlers(app)
     configure_blueprints(app)
     return app
 
 
-def configure_app(app,config=None):
+def configure_app(app, config=None):
     if config:
         app.config.from_object(config)
 
