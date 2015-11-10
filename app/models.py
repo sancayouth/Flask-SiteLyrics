@@ -48,6 +48,9 @@ class Artist(db.Model):
         self.name = name
         self.user_id = user_id
 
+    def get_id(self):
+        return unicode(self.id)
+
     def __repr__(self):
         return '<Artists (name=%r)>' % (self.name)
 
@@ -67,6 +70,8 @@ class Album(db.Model):
         self.user_id = user_id
         self.artist_id = artist_id
 
+    def get_id(self):
+        return unicode(self.id)
 
     def __repr__(self):
         return '<Albums (name=%r)>' % (self.name)
