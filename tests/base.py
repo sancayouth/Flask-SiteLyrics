@@ -17,6 +17,13 @@ class BaseTestCase(TestCase):
                              password="admin"))
         db.session.commit()
 
+    def login(self, username, password):
+        return self.app.post('/login', data=dict( username=username,
+                           password=password ), follow_redirects=True)
+
+    def logout(self):
+        return self.app.get('/logout', follow_redirects=True)
+
     def tearDown(self):
         db.session.remove()
         db.drop_all()
