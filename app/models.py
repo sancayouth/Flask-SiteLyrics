@@ -42,7 +42,8 @@ class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    albums_artist = db.relationship('Album', lazy='dynamic', backref='artist')
+    albums_artist = db.relationship('Album', backref=db.backref('artist'),
+                                     cascade='all, delete')
 
     def __init__(self, name, user_id):
         self.name = name
@@ -50,6 +51,9 @@ class Artist(db.Model):
 
     def get_id(self):
         return unicode(self.id)
+
+    def get_name_without_spaces(self):
+        return self.name.replace(' ', '').upper()
 
     def __repr__(self):
         return '<Artists (name=%r)>' % (self.name)
@@ -61,6 +65,7 @@ class Album(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    year = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
     lyrics_album = db.relationship('Lyric', lazy='dynamic', backref='album')
@@ -72,6 +77,9 @@ class Album(db.Model):
 
     def get_id(self):
         return unicode(self.id)
+
+    def get_name_without_spaces(self):
+        return self.name.replace(' ', '').upper()
 
     def __repr__(self):
         return '<Albums (name=%r)>' % (self.name)
@@ -92,6 +100,9 @@ class Lyric(db.Model):
         self.user_id = user_id
         self.album_id = album_id
         self.lyric_song = lyric_song
+
+    def get_name_without_spaces(self):
+        return self.name.replace(' ', '').upper()
 
     def __repr__(self):
         return '<Lyrics (name=%r)>' % (self.name)
