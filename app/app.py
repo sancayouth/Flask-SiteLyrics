@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from .extensions import login_manager, bootstrap, bcrypt, db
 from config import DevelopmentConfig
 
@@ -30,8 +30,7 @@ def configure_extensions(app):
 
     @login_manager.user_loader
     def load_user(id):
-        pass
-        # return User.query.get(id)
+        return User.query.get(id)
 
     @login_manager.unauthorized_handler
     def unauthorized():
@@ -46,6 +45,8 @@ def configure_blueprints(app):
     app.register_blueprint(home_blueprint)
     from auth.views import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+    from panel.views import panel as panel_blueprint
+    app.register_blueprint(panel_blueprint)
 
 
 def configure_error_handlers(app):
