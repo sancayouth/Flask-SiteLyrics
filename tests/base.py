@@ -16,6 +16,7 @@ class BaseTestCase(TestCase):
         db.session.add(User(username="admin", email="ad@email.com",
                              password="admin"))
         db.session.commit()
+        self.user = User.query.filter_by(username='admin').first()
 
     def login(self, username, password):
         return self.app.post('/login', data=dict( username=username,

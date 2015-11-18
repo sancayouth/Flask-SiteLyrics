@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from app import db, bcrypt
+from flask import jsonify
 
 
 class User(db.Model):
@@ -54,6 +55,17 @@ class Artist(db.Model):
 
     def get_name_without_spaces(self):
         return self.name.replace(' ', '').upper()
+
+    @staticmethod
+    def get_artists_by_letter(letter):
+        artists = Artist.query.filter(Artist.name.like(letter+'%')).all()
+        artists_list = []
+        for artist in artists:
+            art_dic = {}
+            art_dic['name'] =  artist.name
+            art_dic['numb_w_s'] = artist.name.replace(' ', '').upper()
+            artists_list.append(art_dic)
+        return artists_list
 
     def __repr__(self):
         return '<Artists (name=%r)>' % (self.name)
