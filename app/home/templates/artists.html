@@ -7,14 +7,14 @@
 {% block content %}
 <div class="row">
   <div class="col-md-6 left_col">
-    <ul>
+    <ul class="list">
     {%  for artist in left %}
        <li><a href="/{{letter}}/{{artist.name_ws}}">{{artist.name}}</a></li>
     {% endfor %}
     </ul>
   </div>
   <div class="col-md-6 right_col">
-    <ul>
+    <ul class="list">
     {%  for artist in right %}
        <li><a href="/{{letter}}/{{artist.name_ws}}">{{artist.name}}</a></li>
     {% endfor %}
