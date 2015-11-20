@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+  {%include "navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 left_col">
+    <ul>
+    {%  for artist in left %}
+       <li><a href="/{{letter}}/{{artist.name_ws}}">{{artist.name}}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-6 right_col">
+    <ul>
+    {%  for artist in right %}
+       <li><a href="/{{letter}}/{{artist.name_ws}}">{{artist.name}}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

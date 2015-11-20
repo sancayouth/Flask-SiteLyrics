@@ -8,7 +8,7 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String)
     artists_creator = db.relationship('Artist', lazy='dynamic', backref='author')
@@ -58,12 +58,13 @@ class Artist(db.Model):
 
     @staticmethod
     def get_artists_by_letter(letter):
-        artists = Artist.query.filter(Artist.name.like(letter+'%')).all()
+        artists = Artist.query.filter(Artist.name.like(letter+'%'))\
+                .order_by('name').all()
         artists_list = []
         for artist in artists:
             art_dic = {}
             art_dic['name'] =  artist.name
-            art_dic['numb_w_s'] = artist.name.replace(' ', '').upper()
+            art_dic['name_ws'] = artist.name.replace(' ', '').upper()
             artists_list.append(art_dic)
         return artists_list
 
