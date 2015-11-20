@@ -19,8 +19,8 @@ class BaseTestCase(TestCase):
         self.user = User.query.filter_by(username='admin').first()
 
     def login(self, username, password):
-        return self.app.post('/login', data=dict( username=username,
-                           password=password ), follow_redirects=True)
+        return self.app.post('/login', data=dict(username=username,
+                           password=password), follow_redirects=True)
 
     def logout(self):
         return self.app.get('/logout', follow_redirects=True)

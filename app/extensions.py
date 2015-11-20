@@ -8,4 +8,4 @@ from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 login_manager = LoginManager()
 bootstrap = Bootstrap()
-bcrypt =  Bcrypt()
+bcrypt = Bcrypt()
