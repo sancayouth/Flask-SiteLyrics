@@ -42,19 +42,18 @@ class Artist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    name_ws = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     albums_artist = db.relationship('Album', backref=db.backref('artist'),
                                      cascade='all, delete')
 
     def __init__(self, name, user_id):
-        self.name = name
+        self.name = name.lower()
+        self.name_ws = name.replace(' ', '').lower()
         self.user_id = user_id
 
     def get_id(self):
         return unicode(self.id)
-
-    def get_name_without_spaces(self):
-        return self.name.replace(' ', '').upper()
 
     @staticmethod
     def get_artists_by_letter(letter):
@@ -64,7 +63,7 @@ class Artist(db.Model):
         for artist in artists:
             art_dic = {}
             art_dic['name'] = artist.name
-            art_dic['name_ws'] = artist.name.replace(' ', '').upper()
+            art_dic['name_ws'] = artist.name_ws
             artists_list.append(art_dic)
         return artists_list
 
@@ -78,22 +77,21 @@ class Album(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    name_ws = db.Column(db.String, nullable=False)
     date = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
-    lyrics_album = db.relationship('Lyric', lazy='dynamic', backref='album')
+    lyrics = db.relationship('Lyric', lazy='dynamic', backref='album')
 
     def __init__(self, name, date, user_id, artist_id):
-        self.name = name
+        self.name = name.lower()
+        self.name_ws = name.replace(' ', '').lower()
         self.user_id = user_id
         self.artist_id = artist_id
         self.date = date
 
     def get_id(self):
         return unicode(self.id)
-
-    def get_name_without_spaces(self):
-        return self.name.replace(' ', '').upper()
 
     def get_year(self):
         return unicode(self.date.year)
@@ -108,18 +106,17 @@ class Lyric(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    name_ws = db.Column(db.String, nullable=False)
     lyric_song = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     def __init__(self, name, lyric_song, user_id, album_id):
-        self.name = name
+        self.name = name.lower()
+        self.name_ws = name.replace(' ', '').lower()
         self.user_id = user_id
         self.album_id = album_id
         self.lyric_song = lyric_song
-
-    def get_name_without_spaces(self):
-        return self.name.replace(' ', '').upper()
 
     def __repr__(self):
         return '<Lyrics (name=%r)>' % (self.name)

@@ -20,16 +20,16 @@ class ModelsTestCase(BaseTestCase):
         a2 = Artist('BOOM BOOM KID', self.user.get_id())
         a3 = Artist('BECK', self.user.get_id())
         db.session.add_all([a1, a2, a3])
-        a1 = Artist.query.filter_by(name='INTERPOL').first()
+        a1 = Artist.query.filter_by(name='interpol').first()
         db.session.delete(a1)
         db.session.commit()
         self.assertEqual(2, len(Artist.query.all()))
-        a1 = Artist.query.filter_by(name='INTERPOL').first()
+        a1 = Artist.query.filter_by(name='interpol').first()
         self.assertIsNone(a1)
 
     def test_artist_name_withoutspace(self):
         a1 = Artist('BOOM BOOM KID', self.user.get_id())
-        self.assertEqual('BOOMBOOMKID', a1.get_name_without_spaces())
+        self.assertEqual('boomboomkid', a1.name_ws)
 
     def test_albums_created(self):
         a1 = Artist('ARTIST', self.user.get_id())
@@ -60,7 +60,7 @@ class ModelsTestCase(BaseTestCase):
         a1 = Artist('ARTIST', self.user.get_id())
         db.session.add(a1)
         al1 = Album('album 1', datetime.now(), self.user.get_id(), a1.get_id())
-        self.assertEqual('ALBUM1', al1.get_name_without_spaces())
+        self.assertEqual('album1', al1.name_ws)
 
     def test_albums_are_deleted_when_artist_are_deleted(self):
         a1 = Artist('ARTIST', self.user.get_id())
@@ -88,8 +88,8 @@ class ModelsTestCase(BaseTestCase):
         a2 = Artist('ARTIST 2', self.user.get_id())
         db.session.add_all([a1, a2])
         db.session.commit()
-        list_artists = [{'name_ws': u'ARTIST1', 'name': u'ARTIST 1'},
-         {'name_ws': u'ARTIST2', 'name': u'ARTIST 2'}]
+        list_artists = [{'name_ws': u'artist1', 'name': u'artist 1'},
+         {'name_ws': u'artist2', 'name': u'artist 2'}]
         artists = Artist.get_artists_by_letter('A')
         self.assertEqual(list_artists, artists)
 
@@ -138,7 +138,7 @@ class ModelsTestCase(BaseTestCase):
         db.session.add_all(lyrics)
         db.session.commit()
         self.assertEqual(9, len(Lyric.query.all()))
-        l1 = Lyric.query.filter_by(name='NANANA batman 1').first()
+        l1 = Lyric.query.filter_by(name='nanana batman 1').first()
         db.session.delete(l1)
         db.session.commit()
         self.assertEqual(8, len(Lyric.query.all()))
@@ -150,7 +150,7 @@ class ModelsTestCase(BaseTestCase):
         db.session.add(al1)
         l1 = Lyric('A b', 'NaN', self.user.get_id(), al1.get_id())
         db.session.add(l1)
-        self.assertEqual('AB', l1.get_name_without_spaces())
+        self.assertEqual('ab', l1.name_ws)
 
 if __name__ == '__main__':
     unittest.main()
