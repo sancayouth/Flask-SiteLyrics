@@ -4,6 +4,7 @@ from app.extensions import db
 from app.models import User, Artist, Album, Lyric
 from config import DevelopmentConfig
 from datetime import datetime
+import random
 
 
 app = create_app(DevelopmentConfig)
@@ -60,11 +61,12 @@ def filldb():
                   nananananana
 
                   batman batman'''
+    words = ['music', 'letter' ,'pop', 'rock', 'lyric', 'love' ,'peace']
     for album in albs:
         for i in range(1, 8):
             lyrics.append(
                 Lyric(
-                    'NANANA batman ' + str(i),
+                    ' '.join(random.choice(words) for l in range(5)),
                     song_ly,
                     usr.get_id(),
                     album.get_id()
