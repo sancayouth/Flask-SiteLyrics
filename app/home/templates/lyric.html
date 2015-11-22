@@ -3,3 +3,17 @@
 {% block navbar %}
   {%include "navbar.html" %}
 {% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 albums">
+      <h1><b>{{artist.name}} Lyrics</b></h1>
+      <div class="lyric_name">
+        "<b>{{lyric.name}}</b>"
+      </div>
+      <div class="song">
+         {{lyric.lyric_song}}
+      </div>
+  </div>
+</div>
+{% endblock %}

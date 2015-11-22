@@ -3,3 +3,23 @@
 {% block navbar %}
   {%include "navbar.html" %}
 {% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 albums">
+      {% for album in artist.albums_artist %}
+      <div class="album">album:"<b>{{album.name}}</b>"({{album.date.year}})
+      </div>
+      <div class="lyrics">
+        <ul class="list">
+          {% for lyric in album.lyrics %}
+            <li>
+              <a href="/lyrics/{{artist.name_ws}}/{{lyric.id}}">{{lyric.name}}</a>
+            <li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
