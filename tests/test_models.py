@@ -1,11 +1,17 @@
 import unittest
 from base import BaseTestCase
 from app.extensions import db
-from app.models import Artist, Album, Lyric
+from app.models import Artist, Album, Lyric, User
 from datetime import datetime
 
 
 class ModelsTestCase(BaseTestCase):
+
+    def test_user_name_is_not_repeated(self):
+        username = "admin"
+        username2 = "admin0"
+        self.assertFalse(User.check_name(username))
+        self.assertTrue(User.check_name(username2))
 
     def test_artists_created(self):
         a1 = Artist('INTERPOL', self.user.get_id())

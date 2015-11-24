@@ -32,6 +32,10 @@ class User(db.Model):
     def get_id(self):
         return unicode(self.id)
 
+    @staticmethod
+    def check_name(name):
+        return User.query.filter(User.username == name).count() == 0
+
     def __repr__(self):
         return '<Users (username=%r)>' % (self.username)
 
