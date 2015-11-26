@@ -3,8 +3,6 @@ from app import create_app
 from app.extensions import db
 from app.models import User, Artist, Album, Lyric
 from config import DevelopmentConfig
-from datetime import datetime
-import random
 
 
 app = create_app(DevelopmentConfig)
@@ -14,6 +12,13 @@ manager = Manager(app)
 @manager.command
 def run():
     app.run()
+
+
+@manager.command
+def test():
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
 
 @manager.command
@@ -32,6 +37,8 @@ def adduser(email, username):
 
 @manager.command
 def filldb():
+    from datetime import datetime
+    import random
     usr = User.query.get(1)
     artists = []
     for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
@@ -51,17 +58,24 @@ def filldb():
     albs = Album.query.all()
     lyrics = []
     song_ly = ''' nananananana
+                  <br>
                   nanananananan
+                  <br>
                   nananananana
+                  <br>
                   nananananana
-
+                  <br>
+                  <br>
                   nananananana
+                  <br>
                   nanananananan
+                  <br>
                   nananananana
+                  <br>
                   nananananana
-
+                  <br>
                   batman batman'''
-    words = ['music', 'letter' ,'pop', 'rock', 'lyric', 'love' ,'peace']
+    words = ['music', 'letter', 'pop', 'rock', 'lyric', 'love', 'peace']
     for album in albs:
         for i in range(1, 8):
             lyrics.append(
