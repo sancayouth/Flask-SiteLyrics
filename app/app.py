@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, redirect
 from .extensions import login_manager, bootstrap, bcrypt, db
-from config import DevelopmentConfig
+
 
 def create_app(config=None):
     app = Flask(__name__)
@@ -22,15 +22,10 @@ def configure_extensions(app):
     db.init_app(app)
     # Flask-Bcrypt
     bcrypt.init_app(app)
-    # flask-bootsrap
+    # Flask-bootsrap
     bootstrap.init_app(app)
-    # flask-login
+    # Flask-login
     login_manager.login_view = 'auth.login'
-    login_manager.refresh_view = 'auth.reauth'
-
-    @login_manager.user_loader
-    def load_user(id):
-        return User.query.get(id)
 
     @login_manager.unauthorized_handler
     def unauthorized():

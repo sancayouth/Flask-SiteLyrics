@@ -1,4 +1,3 @@
-import unittest
 from base import BaseTestCase
 from app.extensions import db
 from app.models import Artist, Album, Lyric, User
@@ -157,6 +156,3 @@ class ModelsTestCase(BaseTestCase):
         l1 = Lyric('A b', 'NaN', self.user.get_id(), al1.get_id())
         db.session.add(l1)
         self.assertEqual('ab', l1.name_ws)
-
-if __name__ == '__main__':
-    unittest.main()

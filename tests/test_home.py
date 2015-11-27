@@ -1,4 +1,3 @@
-import unittest
 from base import BaseTestCase
 from app.models import Artist, Album, Lyric
 from app.extensions import db
@@ -54,6 +53,3 @@ class HomeTestCase(BaseTestCase):
         self.assertIn(b'Flask Lyric - song 1', response.data)
         self.assertIn(b'ARTIST 1 LYRICS', response.data)
         self.assertIn(b'test 1', response.data)
-
-if __name__ == '__main__':
-    unittest.main()

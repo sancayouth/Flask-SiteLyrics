@@ -7,7 +7,7 @@ home = Blueprint('home', __name__, template_folder='templates')
 
 @home.route('/')
 def home_():
-    return render_template('index.html', title='Flask Lyrics')
+    return render_template('index.html', title='Flask Lyrics - Home')
 
 
 @home.route('/artists/<letter>')
@@ -25,6 +25,7 @@ def artists_by_letter(letter):
                                 left=left, right=right, letter=letter)
     return redirect(url_for('home.home_'))
 
+
 @home.route('/artist/<artist_ws>')
 def albums_by_artist(artist_ws):
     artist = Artist.query.filter_by(name_ws=artist_ws).first()
@@ -34,8 +35,9 @@ def albums_by_artist(artist_ws):
                     title='Flask Lyrics - ' + artist.name, artist=artist)
     return redirect(url_for('home.home_'))
 
+
 @home.route('/lyrics/<artist_ws>/<int:lyric_id>')
-def lyric_by_artist(artist_ws, lyric_id = None):
+def lyric_by_artist(artist_ws, lyric_id=None):
     artist = Artist.query.filter_by(name_ws=artist_ws).first()
     if artist and lyric_id:
         lyric = Lyric.query.filter_by(id=lyric_id).first()

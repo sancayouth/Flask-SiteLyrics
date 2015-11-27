@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from app import db, bcrypt
-from flask import jsonify
 
 
 class User(db.Model):
@@ -11,7 +10,8 @@ class User(db.Model):
     username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String)
-    artists_creator = db.relationship('Artist', lazy='dynamic', backref='author')
+    artists_creator = db.relationship('Artist', lazy='dynamic',
+             backref='author')
     albums_creator = db.relationship('Album', lazy='dynamic', backref='author')
     lyrics_creator = db.relationship('Lyric', lazy='dynamic', backref='author')
 
