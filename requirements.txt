@@ -4,7 +4,6 @@ coverage==4.0.2
 dominate==2.1.16
 Flask==0.10.1
 Flask-Bcrypt==0.7.1
-Flask-Bootstrap==3.3.5.7
 Flask-Login==0.3.2
 Flask-Script==2.0.5
 Flask-SQLAlchemy==2.1

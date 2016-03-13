@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, redirect
-from .extensions import login_manager, bootstrap, bcrypt, db
+from .extensions import login_manager, bcrypt, db
 
 
 def create_app(config=None):
@@ -22,8 +22,6 @@ def configure_extensions(app):
     db.init_app(app)
     # Flask-Bcrypt
     bcrypt.init_app(app)
-    # Flask-bootsrap
-    bootstrap.init_app(app)
     # Flask-login
     login_manager.login_view = 'auth.login'
 
