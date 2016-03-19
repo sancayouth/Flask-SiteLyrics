@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-12 albums">
+<div class="row lyric center">
+  <div class="col-6">
       <h1><b>{{artist.name.upper()}} LYRICS</b></h1>
       <div class="lyric_name">
-        "<b>{{lyric.name}}</b>"
+        "{{lyric.name}}"
       </div>
       <div class="song">
          {{lyric.lyric_song|safe}}

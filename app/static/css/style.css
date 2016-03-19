@@ -1,75 +1,51 @@
-html {
- position: relative;
- min-height: 100%;
-}
+.row { margin: 0 -0.5em; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  text-align: center;
-  color:#FFF;
-  background-color: #0D47A1;
-}
+.row:before, .row:after { content: ''; display: table; }
 
-h1 {
-  color: #2196F3;
-}
+.row:after { clear: both; }
 
-footer .container .row{
-  padding-top: 15px;
-}
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6 { float: left; padding: 0 0.5em; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-.nav>li>a {
-  padding: 15px 13px;
-}
+.col-1 { width: 16.666666666666668%; }
 
-.navbar-default {
-    background-color: #2196F3;
-    border-color: #2196F3;
-    color: #FFF;
-}
+.col-2 { width: 33.333333333333336%; }
 
-.navbar-form{
-  padding: 0;
-}
+.col-3 { width: 50%; }
 
-#bs-example-navbar-collapse-1 > ul > form > button{
-    background-color: #FF4081;
-    border-color: #FF4081;
-}
+.col-4 { width: 66.66666666666667%; }
 
-#bs-example-navbar-collapse-1 > ul > li> a {
-  color: #FFF;
-}
+.col-5 { width: 83.33333333333333%; }
 
-#bs-example-navbar-collapse-1 > ul > li> a:hover {
-  color: #FF4081;
-  font-weight:bold;
-}
+.col-6 { width: 100%; }
 
-.list{
-  list-style: none;
-  padding: 0;
-  text-align: center;
-}
-.albums{
-  text-align: center;
-}
+* { margin: 0; }
 
-.song{
-  text-align: center;
-}
+body { background-color: #F8BBD0; font-family: 'Roboto', sans-serif; }
 
-.copyright {
-    color: #FFF;
-}
+a { text-decoration: none; color: inherit; }
 
-.copyright :hover {
-    color: #FFF;
-}
+.container { margin: 0 auto; max-width: 91%; }
 
-.lyric_name {
-    font-size: 18px;
-}
+#header { height: 3em; background-color: #F06292; color: #FFFFFF; }
+#header .logo { padding: .4em 1.3em 0 0; float: left; }
+#header .letter { padding: 15px 6px 0 6px; float: left; font-weight: 600; font-size: 1.1em; }
+#header .letter:hover { font-size: 1.3em; }
+#header .navbar-form { padding-top: 6px; float: right; width: 300px; height: 30px; }
+#header .navbar-form input { float: left; height: 2.43em; padding-left: 5px; border: none; border-top-left-radius: 9px; border-bottom-left-radius: 9px; }
+#header .navbar-form .btn-wrapper { float: left; }
+#header .navbar-form .btn-wrapper .btn { background-color: #C51162; border: none; padding: 9px 18px; font-size: .9em; font-weight: 600; text-align: center; text-decoration: none; color: white; border-top-right-radius: 9px; border-bottom-right-radius: 9px; }
+
+main { padding: 2em 0; }
+main .list { list-style-type: none; }
+main .list li { padding: .14em 0; }
+main .center { position: absolute; left: 50%; transform: translate(-50%, 0); }
+main .artists { text-align: center; text-transform: uppercase; }
+main .albums { text-align: center; }
+main .albums .album { padding: 1.2em 0; }
+main .albums .album .info-album { font-size: 1.3em; }
+main .albums .album .lyrics { font-size: 0.98em; }
+main .lyric { text-align: center; }
+main .lyric .lyric_name { padding: 0.8em 0; font-size: 1.3em; font-weight: 600; }
+main .lyric .song { font-size: 0.98em; }
+
+footer { display: none; width: 100%; height: 50px; text-align: center; }

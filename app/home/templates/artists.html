@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-6 left_col">
+<div class="row artists center">
+  <div class="col-3 left_col">
     <ul class="list">
     {%  for artist in left %}
        <li><a href="/artist/{{artist.name_ws}}">{{artist.name}}</a></li>
     {% endfor %}
     </ul>
   </div>
-  <div class="col-md-6 right_col">
+  <div class="col-3 right_col">
     <ul class="list">
     {%  for artist in right %}
        <li><a href="/artist/{{artist.name_ws}}">{{artist.name}}</a></li>
